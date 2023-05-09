@@ -1,1 +1,1 @@
-This contains various ALX projects on Higher Level Programmin Including Python Projectsg
+This contains various ALX projects on Higher Level Programmin Including Python Projects
