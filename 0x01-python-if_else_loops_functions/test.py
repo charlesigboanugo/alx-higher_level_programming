@@ -1,6 +1,11 @@
 #!/usr/bin/python3
-def uppercase(str):
-    for s in str:
-        test = ord(s) >= ord('a') and ord(s) <= ord('z')
-        print("{}".format(chr(ord(s) - 32) if test else s), end="")
-    print()
+def fizzbuzz():
+    for x in range(1, 101):
+        if x % 15 == 0:
+            print("FizzBuzz", end=" ")
+        elif x % 3 == 0:
+            print("Fizz", end=" ")
+        elif x % 5 == 0:
+            print("Buzz", end=" ")
+        else:
+            print(x, end=" ")
