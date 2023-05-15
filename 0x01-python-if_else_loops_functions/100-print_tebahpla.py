@@ -1,3 +1,3 @@
 #!/usr/bin/python3
-for i in range(ord('Z'), ord('A') - 1, -1):
-    print("{}".format(chr(i + ((i + 1) % 2) * 32)), end='')
+for c in range(122, 96, -1):
+    print("{}".format(chr(c - 32) if c % 2 else chr(c)), end="")

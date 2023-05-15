@@ -1,11 +1,6 @@
 #!/usr/bin/python3
-def fizzbuzz():
-    for x in range(1, 101):
-        if x % 15 == 0:
-            print("FizzBuzz", end=" ")
-        elif x % 3 == 0:
-            print("Fizz", end=" ")
-        elif x % 5 == 0:
-            print("Buzz", end=" ")
-        else:
-            print(x, end=" ")
+for c in range(122, 96, -1):
+    letter = chr(c)
+    if c % 2 == 1:
+        letter = chr(c - 32)
+    print("{}".format(letter), end="")
