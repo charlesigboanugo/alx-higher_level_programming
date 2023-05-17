@@ -1,8 +1,7 @@
 #!/usr/bin/python3
-from sys import argv
 if __name__ == "__main__":
-	av = argv[1:]
-	avlen = len(av)
-	print("{} arguments{}".format(avlen, ":" if avlen else "."))
-	for i, v in enumerate(av):
-		print("{}: {}".format(i + 1, v))
+    from sys import argv
+    sum = 0
+    for x in argv[1:]:
+        sum += int(x)
+    print(sum);
