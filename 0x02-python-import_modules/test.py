@@ -1,9 +1,8 @@
 #!/usr/bin/python3
-from test2 import add, sub, mul, div
+from sys import argv
 if __name__ == "__main__":
-    a = 10
-    b = 5
-    print("{} + {} = {}".format(a, b, add(a, b)))
-    print("{} - {} = {}".format(a, b, sub(a, b)))
-    print("{} * {} = {}".format(a, b, mul(a, b)))
-    print("{} / {} = {}".format(a, b, div(a, b)))
+	av = argv[1:]
+	avlen = len(av)
+	print("{} arguments{}".format(avlen, ":" if avlen else "."))
+	for i, v in enumerate(av):
+		print("{}: {}".format(i + 1, v))

@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 from sys import argv
 if __name__ == "__main__":
-	av = argv[1:]
-	avlen = len(av)
+	avlen = len(argv) - 1
 	print("{} arguments{}".format(avlen, ":" if avlen else "."))
-	for i, v in enumerate(av):
-		print("{}: {}".format(i + 1, v))
+	for x in range(1, avlen + 1):
+		print("{}: {}".format(x, argv[x]))
