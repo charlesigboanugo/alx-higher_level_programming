@@ -1,7 +1,11 @@
 #!/usr/bin/python3
-def new_in_list(my_list, idx, element):
-    if (my_list is None) | (idx is None) | (idx < 0) | (idx >= len(my_list)):
-        return my_list
-    new_list = my_list.copy()
-    new_list[idx] = element
-    return new_list
+def print_matrix_integer(matrix=[[]]):
+    if matrix == None:
+        return
+    for row in matrix:
+        if row is not None:
+            for x in range(0, len(row)):
+                print("{}".format(row[x]), end='')
+                if x is not len(row) - 1:
+                    print(" ", end='')
+        print()

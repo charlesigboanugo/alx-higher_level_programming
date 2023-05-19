@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 def print_matrix_integer(matrix=[[]]):
-    if matrix is None:
-        return None
+    if matrix == None:
+        return
     for row in matrix:
-        if row is not None and len(row) > 0 and row[0] is not None:
-            print("{:d}".format(row[0]), end='')
-            if len(row) > 1:
-                for col in row[1:]:
-                    print(" {:d}".format(col), end='')
+        if row is not None:
+            for x in range(0, len(row)):
+                print("{}".format(row[x]), end='')
+                if x is not len(row) - 1:
+                    print(" ", end='')
         print()
