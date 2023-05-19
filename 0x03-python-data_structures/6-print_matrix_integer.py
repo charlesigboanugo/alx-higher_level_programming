@@ -6,6 +6,6 @@ def print_matrix_integer(matrix=[[]]):
         if row is not None:
             for x in range(0, len(row)):
                 print("{:d}".format(row[x]), end='')
-                if x is not len(row) - 1:
+                if x != len(row) - 1:
                     print(" ", end='')
         print()
