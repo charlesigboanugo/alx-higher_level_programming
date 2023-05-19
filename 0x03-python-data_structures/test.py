@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-def print_reversed_list_integer(my_list=[]):
-    if my_list is not None:
-        for ind in my_list[::-1]:
-            print("{:d}".format(ind))
+def new_in_list(my_list, idx, element):
+    if (my_list is None) | (idx is None) | (idx < 0) | (idx >= len(my_list)):
+        return my_list
+    new_list = my_list.copy()
+    new_list[idx] = element
+    return new_list
