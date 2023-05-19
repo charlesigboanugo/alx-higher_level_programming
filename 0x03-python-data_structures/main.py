@@ -1,13 +1,26 @@
 #!/usr/bin/python3
-add_tuple = __import__('test').add_tuple
+max_integer = __import__('test').max_integer
 
-tuple_a = (1, 89)
-tuple_b = (88, 11)
-new_tuple = add_tuple(tuple_a, tuple_b)
-print(new_tuple)
+my_list = [1, 90, 2, 13, 34, 5, -13, 3]
+max_value = max_integer(my_list)
+print("Max: {}".format(max_value))
 
-print(add_tuple(tuple_a, (1, )))
-print(add_tuple(tuple_a, ()))
-print(add_tuple((), ()))
-print(add_tuple(None, None))
-print(add_tuple((6, 3), None))
+my_list = [1, 90, 2, 13, 34, 122, 5, -13, 3]
+max_value = max_integer(my_list)
+print("Max: {}".format(max_value))
+
+my_list = [-1, -90, -2, -13, -34, -5, -13, -3]
+max_value = max_integer(my_list)
+print("Max: {}".format(max_value))
+
+my_list = []
+max_value = max_integer(my_list)
+print("Max: {}".format(max_value))
+
+my_list = None
+max_value = max_integer(my_list)
+print("Max: {}".format(max_value))
+
+my_list = [1, 90, None, 13, 34, None, -13, 3]
+max_value = max_integer(my_list)
+print("Max: {}".format(max_value))
