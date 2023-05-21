@@ -2,20 +2,10 @@
 #include <stdlib.h>
 
 /**
+* is_palindrome - checks if a singly linked list is a palindrome
+* @head: stores the pointer to the list
 *
-*/
-
-int list_len(listint_t *ptr)
-{
-	int len;
-
-	for (len = 0; ptr != NULL; ptr = ptr->next)
-		len++;
-	return len;
-}
-
-/**
-*
+* Return: 0 if it is not a palindrome, 1 if it is a palindrome
 */
 
 int is_palindrome(listint_t **head)
@@ -28,8 +18,10 @@ int is_palindrome(listint_t **head)
 	if (*head == NULL || (*head)->next == NULL)
 		return (1);
 	ptr = *head;
-	len = list_len(ptr);
-	for (i = 0; i < len / 2; i++)
+	for (len = 0; ptr != NULL; ptr = ptr->next)
+		len++;
+	ptr = *head;
+	for (i = 0; i < len / 2; i++, ptr = ptr->next)
 	{
 		end = ptr;
 		for (j = 1; j < len - 2 * (i); j++)
