@@ -1,5 +1,11 @@
 #!/usr/bin/python3
-def multiply_by_2(a_dictionary):
+def best_score(a_dictionary):
     if a_dictionary is not None:
-        return {x: y * 2 for x, y in a_dictionary.copy().items()}
+        biggest = None
+        keyval = 0
+        for key, val in a_dictionary.items():
+            if val > keyval:
+                biggest = key
+                keyval = val
+        return biggest
     
