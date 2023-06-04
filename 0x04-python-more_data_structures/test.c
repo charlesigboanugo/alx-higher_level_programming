@@ -31,9 +31,10 @@ void print_python_list(PyObject *p)
 		printf("[*] Allocated = %ld\n", lob->allocated);
 		for (i = 0; i < lsize; i++)
 		{
-			printf("Element %ld: %s\n", i, (lob->ob_item)[i]->tp_name);
+			printf("Element %ld: ", i);
+			printf("%s\n", (lob->ob_item)[i]->ob_type->tp_name);
 			if (PyBytes_Check(lob->ob_item[i]))
-				print_python_bytes(PyObject *p);
+				print_python_bytes(p);
 		}
 	}
 	else
