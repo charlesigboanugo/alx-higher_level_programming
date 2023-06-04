@@ -39,7 +39,7 @@ void print_python_list(PyObject *p)
 	PyListObject *lob = (PyListObject *) p;
 	Py_ssize_t lsize, i;
 
-	printf("[.] Python list info\n");
+	printf("[*] Python list info\n");
 	if (PyList_Check(p))
 	{
 		lsize = PyList_Size(p);
