@@ -63,4 +63,4 @@ class SinglyLinkedList:
         while temp is not None:
             string = "{}\n{}".format(string, temp.data)
             temp = temp.next_node
-        return string
+        return string[1:]
