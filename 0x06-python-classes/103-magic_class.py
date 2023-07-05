@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+""" Defines tge Magic Class """
+
+
 import math
 
 
