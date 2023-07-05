@@ -17,13 +17,19 @@ class Square:
         self.__position = position
         self.__size = size
 
-    def __str__(self):
+    def __repr__(self):
         retstr = ""
-        if self.__size != 0:
-            retstr = "\n" * self.__position[1]
-        for x in range(self.__size):
-            retstr += " " * self.__position[0] + '#' * self.__size + '\n'
-        return retstr[:-1]
+        if self.__size == 0:
+            pass
+        else:
+            for x in range(self.__position[1]):
+                retstr += '\n'
+            string = '#' * self.__size
+            margin = ' ' * self.__position[0]
+            retstr += margin + string
+            for x in range(1, self.__size):
+                retstr += '\n' + margin + string
+        return retstr
 
     def area(self):
         """Returns area of the square"""
@@ -60,9 +66,12 @@ class Square:
 
     def my_print(self):
         """Print square"""
-        retstr = ""
-        if self.__size != 0:
-            retstr = "\n" * self.__position[1]
-        for x in range(self.__size):
-            retstr += " " * self.__position[0] + '#' * self.__size + '\n'
-        print(retstr[:-1])
+        if self.__size == 0:
+            print()
+        else:
+            for x in range(self.__position[1]):
+                print()
+            string = '#' * self.__size
+            margin = ' ' * self.__position[0]
+            for x in range(self.__size):
+                print(margin, string, sep="")

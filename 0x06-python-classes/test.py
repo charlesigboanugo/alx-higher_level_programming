@@ -1,66 +1,68 @@
 #!/usr/bin/python3
-""" Defines a singly linked list and a node """
+"""Defines the square class"""
 
 
-class Node:
-    """ A Node class """
-    def __init__(self, data, next_node=None):
-        if type(data) is not int:
-            raise TypeError("data must be an integer")
-        if next_node is not None and type(next_node) is not Node:
-            raise TypeError("next_node must be a Node object")
-        self.__data = data
-        self.__next_node = next_node
-
-    @property
-    def data(self):
-        """ returns the data stored in node """
-        return self.__data
-
-    @data.setter
-    def data(self, value):
-        """ set node data to value"""
-        if type(value) is not int:
-            raise TypeError("data must be an integer")
-        self.__data = value
-
-    @property
-    def next_node(self):
-        """ returns the next_node object"""
-        return self.__next_node
-
-    @next_node.setter
-    def next_node(self, value):
-        """ stores the next_node object """
-        if value is not None and type(value) is not Node:
-            raise TypeError("next_node must be a Node object")
-        self.__next_node = value
-
-
-class SinglyLinkedList:
-    """ A singly linked list class """
-
-    def __init__(self):
-        self.__head = None
-
-    def sorted_insert(self, value):
-        """ inserts a new node into the sorted linked list """
-        temp = self.__head
-        if temp is None:
-            self.__head = Node(value)
-            return
-        if temp.data < value:
-            while temp.next_node is not None and \
-             temp.next_node.data < value:
-                temp = temp.next_node
-            temp.next_node = Node(value, temp.next_node)
-        else:
-            self.__head = Node(value, temp)
+class Square:
+    """Square class. Has a size"""
+    def __init__(self, size=0, position=(0, 0)):
+        """Initialize Square"""
+        if type(size) is not int:
+            raise TypeError("size must be an integer")
+        if size < 0:
+            raise ValueError("size must be >= 0")
+        if type(position) is not tuple or len(position) != 2 or\
+           type(position[0]) is not int or type(position[1]) is not int\
+           or position[0] < 0 or position[1] < 0:
+            raise TypeError("position must be a tuple of 2 positive integers")
+        self.__position = position
+        self.__size = size
 
     def __str__(self):
-        temp = self.__head
-        string = ""
-        while temp is not None:
-            string = "{}\n{}".format(string, temp.data)
-            temp = temp.next_node
-        return string
+        retstr = ""
+        if self.__size != 0:
+            retstr = "\n" * self.__position[1]
+        for x in range(self.__size):
+            retstr += " " * self.__position[0] + '#' * self.__size + '\n'
+        return retstr[:-1]
+
+    def area(self):
+        """Returns area of the square"""
+        return self.__size * self.__size
+
+    @property
+    def size(self):
+        """Return size of the square"""
+        return self.__size
+
+    @size.setter
+    def size(self, value):
+        """Set size of the square"""
+        if type(value) is not int:
+            raise TypeError("size must be an integer")
+        if value < 0:
+            raise ValueError("size must be >= 0")
+        self.__size = value
+
+    @property
+    def position(self):
+        """Return position of Square"""
+        return self.__position
+
+    @position.setter
+    def position(self, value):
+        """Set position of square"""
+        if type(value) is not tuple or len(value) != 2\
+           or type(value[0]) is not int or type(value[1]) is not int\
+           or value[0] < 0 or value[1] < 0:
+            raise TypeError(
+                "position must be a tuple of two positive integers")
+        self.__position = value
+
+    def my_print(self):
+        """Print square"""
+        retstr = ""
+        if self.__size != 0:
+            retstr = "\n" * self.__position[1]
+        for x in range(self.__size):
+            retstr += " " * self.__position[0] + '#' * self.__size + '\n'
+        print(retstr[:-1])
