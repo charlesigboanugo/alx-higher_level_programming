@@ -3,7 +3,7 @@
 
 
 def matrix_divided(matrix, div):
-    """Divides all elements in matrix by div and returns a new matrix""" 
+    """Divides all elements in matrix by div and returns a new matrix"""
     if type(matrix) is not list or len(matrix) == 0:
         raise TypeError("matrix must be a matrix (list of lists)"
                         " of integers/floats")
@@ -29,4 +29,4 @@ def matrix_divided(matrix, div):
                                 " of integers/floats")
             new_row.append(round(float(x / div), 2))
         new_matrix.append(newrow)
-    return newmatrix
+    return new_matrix
