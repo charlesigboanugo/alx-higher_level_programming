@@ -3,6 +3,7 @@
 
 
 def matrix_divided(matrix, div):
+    """Divides all elements in matrix by div and returns a new matrix""" 
     if type(matrix) is not list or len(matrix) == 0:
         raise TypeError("matrix must be a matrix (list of lists)"
                         " of integers/floats")
@@ -14,18 +15,18 @@ def matrix_divided(matrix, div):
         raise TypeError("matrix must be a matrix (list of lists)"
                         " of integers/floats")
     rowlen = len(matrix[0])
-    newmatrix = []
+    new_matrix = []
     for row in matrix:
         if type(row) is not list:
             raise TypeError("matrix must be a matrix (list of lists)"
                             " of integers/floats")
         if len(row) != rowlen:
             raise TypeError("Each row of the matrix must have the same size")
-        newrow = []
+        new_row = []
         for x in row:
             if type(x) is not int and type(x) is not float:
                 raise TypeError("matrix must be a matrix (list of lists)"
                                 " of integers/floats")
-            newrow.append(round(float(x / div), 2))
-        newmatrix.append(newrow)
+            new_row.append(round(float(x / div), 2))
+        new_matrix.append(newrow)
     return newmatrix
