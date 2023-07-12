@@ -71,6 +71,10 @@ TypeError: matrix must be a matrix (list of lists) of integers/floats
 Traceback (most recent call last):
 TypeError: matrix must be a matrix (list of lists) of integers/floats
 
+>>> matrix_divided(3.4, 2)
+Traceback (most recent call last):
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
 Matrix not a list of lists of integers or float
 =============================================================
 >>> matrix_divided([4, [8, 10], [25, 6]], 8) 
@@ -85,7 +89,7 @@ TypeError: matrix must be a matrix (list of lists) of integers/floats
 Traceback (most recent call last):
 TypeError: matrix must be a matrix (list of lists) of integers/floats
 
-Matrix with different sizes of row elements
+Matrix with different sizes of lists
 =============================================================
 >>> matrix_divided([[4, 8, 10], [25, 6]], 8) 
 Traceback (most recent call last):
@@ -101,14 +105,11 @@ Division by zero
 Traceback (most recent call last):
 ZeroDivisionError: division by zero
 
->>> matrix = [[]]
->>> print(matrix_divided(matrix, 2)) #empty matrix
+Empty matrix and lists
+=============================================================
+>>> matrix_divided([[]], 2)
 [[]]
->>> matrix = []
->>> print(matrix_divided(matrix, 2)) #empty list
-Traceback (most recent call last):
-TypeError: matrix must be a matrix (list of lists) of integers/floats
->>> matrix = 3.4
->>> print(matrix_divided(matrix, 2)) #just a number
+
+>>> matrix_divided([], 2)
 Traceback (most recent call last):
 TypeError: matrix must be a matrix (list of lists) of integers/floats
