@@ -1,5 +1,5 @@
 =============================================================
-Test Examples for the matrix_divided function
+Test Examples for the 2-matrix_divided module
 =============================================================
 
 >>> matrix_divided = __import__('2-matrix_divided').matrix_divided

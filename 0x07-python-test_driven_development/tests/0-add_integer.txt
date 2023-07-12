@@ -1,5 +1,5 @@
 =============================================
-Test for add_integer function
+Test for 0-add_integer module
 =============================================
 
 
