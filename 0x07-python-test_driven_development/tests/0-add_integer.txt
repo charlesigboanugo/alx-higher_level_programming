@@ -73,3 +73,10 @@ With (+)(-)inf and NaN
 
 >>> add_integer(float('NaN'), 15)
 104
+
+Missing two Arguments
+=============================================
+
+>>> add_integer()
+Traceback (most recent call last):
+TypeError: add_integer() missing 1 required positional argument: 'a'
