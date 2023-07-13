@@ -2,9 +2,11 @@
 """Defines a function that safely adds attributes to an object"""
 
 
-def add_attribute(obj, attr_name, attr_value):
-    """A function that safely adds attributes to an object"""
-    if hasattr(obj, attr_name):
-        raise TypeError("Can't add new attribute")
-    else:
-        setattr(obj, attr_name, attr_value)
+def add_attribute(obj, name, value):
+    """A function that adds a new attribute to an object if it’s possible:"""
+    if type(name) is not str:
+        raise TypeError("can't add new attribute")
+    try:
+        eval("obj.{} = {}". format(name, value))
+    except Exception:
+        raise TypeError("can't add new attribute")
