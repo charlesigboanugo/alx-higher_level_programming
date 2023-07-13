@@ -3,10 +3,10 @@
 
 
 def add_attribute(obj, name, value):
-    """A function that adds a new attribute to an object if it’s possible:"""
+    """A function that safely adds attributes to an object"""
     if type(name) is not str:
         raise TypeError("can't add new attribute")
     try:
-        eval("obj.{} = {}". format(name, value))
+        exec("obj.{} = value".format(name))
     except Exception:
         raise TypeError("can't add new attribute")
