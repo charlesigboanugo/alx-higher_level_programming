@@ -11,3 +11,10 @@ class LockedClass:
 no attribute '{name}'")
         else:
             super().__setattr__(name, value)
+
+    def __getattr__(self, name):
+        if name == '__dict__':
+            raise AttributeError(f"'LockedClass' object has \
+no attribute '{name}'")
+        else:
+            return super().__getattr__(name)
