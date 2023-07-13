@@ -3,7 +3,7 @@
 
 
 def matrix_mul(m_a, m_b):
-    """Does the dot multiplication of matrix m_a and matrix ma_b""" 
+    """Does the dot multiplication of matrix m_a and matrix ma_b"""
     if type(m_a) is not list:
         raise TypeError("m_a must be a list")
     if type(m_b) is not list:
@@ -19,9 +19,9 @@ def matrix_mul(m_a, m_b):
         if type(row) is not list:
             raise TypeError("m_b must be a list of lists")
     if m_a == [[]]:
-            raise ValueError("m_a can't be empty")
+        raise ValueError("m_a can't be empty")
     if m_b == [[]]:
-            raise ValueError("m_b can't be empty")
+        raise ValueError("m_b can't be empty")
     for row in m_a:
         for col in row:
             if type(col) not in [int, float]:
@@ -39,7 +39,7 @@ def matrix_mul(m_a, m_b):
         if len(row) != brow_size:
             raise TypeError("each row of m_b must be of the same size")
     if arow_size != len(m_b):
-            raise ValueError("m_a and m_b can't be multiplied")
+        raise ValueError("m_a and m_b can't be multiplied")
     row = []
     for x in range(len(m_a)):
         col = []
