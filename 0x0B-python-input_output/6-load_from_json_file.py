@@ -4,5 +4,6 @@ import json
 
 
 def load_from_json_file(filename=""):
+    """ A function that loads an object from a file's json string"""
     with open(filename, "r") as f:
         return json.load(f)
