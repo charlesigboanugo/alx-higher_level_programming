@@ -1,41 +1,23 @@
+==========================================================
 Test cases for 5-text_indentation.py
-====================================
+==========================================================
 
 >>> text_indentation = __import__("5-text_indentation").text_indentation
 
+string without any of the characters ".", "?" and ":"
+==========================================================
 >>> text_indentation("Hello")
 Hello
 
+
+string with one or more of ".", "?" and ":"
+==========================================================
 >>> text_indentation("Hello.")
 Hello.
 <BLANKLINE>
 
 >>> text_indentation("Hello?")
 Hello?
-<BLANKLINE>
-
->>> text_indentation("Hello:")
-Hello:
-<BLANKLINE>
-
->>> text_indentation("   Hello.   ")
-Hello.
-<BLANKLINE>
-
->>> text_indentation(" Hello? ")
-Hello?
-<BLANKLINE>
-
->>> text_indentation("  Hello:  ")
-Hello:
-<BLANKLINE>
-
->>> text_indentation(" Hi: Hello?    Hiya. ")
-Hi:
-<BLANKLINE>
-Hello?
-<BLANKLINE>
-Hiya.
 <BLANKLINE>
 
 >>> text_indentation("Hi:Hello?Hiya.")
@@ -45,3 +27,50 @@ Hello?
 <BLANKLINE>
 Hiya.
 <BLANKLINE>
+
+string with space after one or more of ".", "?" and ":"
+==========================================================
+>>> text_indentation("Hello.   ")
+Hello.
+<BLANKLINE>
+
+>>> text_indentation("Hello? ")
+Hello?
+<BLANKLINE>
+
+>>> text_indentation("Hi: Hello?    Hiya. ")
+Hi:
+<BLANKLINE>
+Hello?
+<BLANKLINE>
+Hiya.
+<BLANKLINE>
+
+string with trailing spaces and one or more of ".", "?" and ":"
+==========================================================
+>>> text_indentation(" Hi: Hello?    Hiya. ")
+Hi:
+<BLANKLINE>
+Hello?
+<BLANKLINE>
+Hiya.
+<BLANKLINE>
+
+>>> text_indentation("   :Hello?Hiya.      ")
+:
+<BLANKLINE>
+Hello?
+<BLANKLINE>
+Hiya.
+<BLANKLINE>
+
+Empty string or contains only space character(s)
+=========================================================
+>>> text_indentation("")
+>>> text_indentation("     ")
+
+string is not a string
+==========================================================
+>>> text_indentation(None)
+Traceback (most recent call last):
+TypeError: text must be a string

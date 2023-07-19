@@ -1,55 +1,115 @@
-Doctest cases for 2-matrix_divided.py
-=====================================
+=============================================================
+Test Examples for the 2-matrix_divided module
+=============================================================
 
 >>> matrix_divided = __import__('2-matrix_divided').matrix_divided
 
->>> matrix = [[1, 2, 3], [4, 5, -6], [7, 8, -9]]
->>> print(matrix_divided(matrix, 2),
-...       matrix, sep='\n') #normal case
-[[0.5, 1.0, 1.5], [2.0, 2.5, -3.0], [3.5, 4.0, -4.5]]
-[[1, 2, 3], [4, 5, -6], [7, 8, -9]]
->>> matrix = [[1, 2, 3], [-4, 5, 6], [7, -8, 9]]
->>> print(matrix_divided(matrix, -2)) #second normal case
-[[-0.5, -1.0, -1.5], [2.0, -2.5, -3.0], [-3.5, 4.0, -4.5]]
->>> print(matrix) #second normal case
-[[1, 2, 3], [-4, 5, 6], [7, -8, 9]]
->>> matrix = [[1, 2, 3], [4, 5, -6], [7, 8, -9]]
->>> print(matrix_divided(matrix, 3),
-...       matrix, sep='\n') #infinitely repeating number
-[[0.33, 0.67, 1.0], [1.33, 1.67, -2.0], [2.33, 2.67, -3.0]]
-[[1, 2, 3], [4, 5, -6], [7, 8, -9]]
->>> matrix = [[1, 2, 3], [4, 5]]
->>> print(matrix_divided(matrix, 1)) #different row sizes
+
+2 by 3 Matrix of only integers and an integer divident
+=============================================================
+>>> matrix = [[10, 18, 20], [25, 100, 30]]
+>>> matrix_divided(matrix, 5) == [[2.0, 3.6, 4.0], [5.0, 20.0, 6.0]]
+True
+
+2 by 3 Matrix of only integers and a float divident
+=============================================================
+>>> matrix = [[19, 5, 20], [38, 29, 16]]
+>>> matrix_divided(matrix, 3.5) == [[5.43, 1.43, 5.71], [10.86, 8.29, 4.57]]
+True
+
+2 by 3 Matrix of only floats and an integer divident
+=============================================================
+>>> matrix = [[17.678, 0.075, 20.04], [0.258, 10.0, 0.005]]
+>>> matrix_divided(matrix, 5) == [[3.54, 0.01, 4.01], [0.05, 2.0, 0.0]] 
+True
+
+2 by 3 Matrix of only floats and a float divident
+=============================================================
+>>> matrix = [[17.678, 0.075, 20.04], [0.258, 10.0, 0.005]]
+>>> matrix_divided(matrix, 4.5) == [[3.93, 0.02, 4.45], [0.06, 2.22, 0.0]]
+True
+
+2 by 3 Matrix of floats and integer and an integer divident
+=============================================================
+>>> matrix = [[10.59, 18, 2.0671], [25, 100, 30.89]]
+>>> matrix_divided(matrix, 6) == [[1.76, 3.0, 0.34], [4.17, 16.67, 5.15]]
+True
+
+2 by 3 Matrix of floats and integers and a float divident
+=============================================================
+>>> matrix = [[300, 192.46, 245], [2.067, 107, 30.89]]
+>>> matrix_divided(matrix, 2.15) == [[139.53, 89.52, 113.95], [0.96, 49.77, 14.37]]	
+True
+
+2 by 3 Matrix consisting of a NaN element
+=============================================================
+>>> a_out = matrix_divided([[10, 18, float('NaN')], [25, 100, 30]], 5)
+>>> e_out =  [[2.0, 3.6, float('NaN')], [5.0, 20.0, 6.0]]
+>>> [
+...	True if a != a else a == b for x, y in zip(a_out, e_out)\
+...     for a, b in zip(x, y)
+... ]
+[True, True, True, True, True, True]
+
+2 by 3 Matrix consisting of an (inf) element
+=============================================================
+>>> matrix = [[10, 18, 0], [25, 20, -float('inf')]]
+>>> matrix_divided(matrix, 5) == [[2.0, 3.6, 0.0], [5.0, 4.0, -float('inf')]]
+True
+
+Invalid Matrices
+=============================================================
+>>> matrix_divided("wrong", 5) 
+Traceback (most recent call last):
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+>>> matrix_divided({"apple": 1, "ball": "two"}, 5)
+Traceback (most recent call last):
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+>>> matrix_divided(None, 5)
+Traceback (most recent call last):
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+>>> matrix_divided(3.4, 2)
+Traceback (most recent call last):
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+Matrix not a list of lists of integers or float
+=============================================================
+>>> matrix_divided([4, [8, 10], [25, 6]], 8) 
+Traceback (most recent call last):
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+>>> matrix_divided([[2, 5], [8, 10], ["wrong", 6]], 8) 
+Traceback (most recent call last):
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+>>> matrix_divided([4, 8, 25, 6], 8) 
+Traceback (most recent call last):
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+Matrix with different sizes of lists
+=============================================================
+>>> matrix_divided([[4, 8, 10], [25, 6]], 8) 
 Traceback (most recent call last):
 TypeError: Each row of the matrix must have the same size
->>> matrix = [[1, 2, 3], [4, 5, 6, 7]]
->>> print(matrix_divided(matrix, 1)) #different row sizes 2
+
+>>> matrix_divided([[4], ["wrong", 6]], 8) 
 Traceback (most recent call last):
 TypeError: Each row of the matrix must have the same size
->>> matrix = [[1, 2, 3], [4, 5, 6]]
->>> print(matrix_divided(matrix, None)) #none div
-Traceback (most recent call last):
-TypeError: div must be a number
->>> matrix = [[1, 2, 3], [4, 5, 6]]
->>> print(matrix_divided(matrix, 0)) #0 div
+
+Division by zero
+=============================================================
+>>> matrix_divided([[10, 18, 20], [25, 100, 30]], 0)
 Traceback (most recent call last):
 ZeroDivisionError: division by zero
->>> matrix = [[]]
->>> print(matrix_divided(matrix, 2)) #empty matrix
+
+Empty matrix and lists
+=============================================================
+>>> matrix_divided([[]], 2)
 [[]]
->>> matrix = []
->>> print(matrix_divided(matrix, 2)) #empty list
-Traceback (most recent call last):
-TypeError: matrix must be a matrix (list of lists) of integers/floats
->>> matrix = 3.4
->>> print(matrix_divided(matrix, 2)) #just a number
-Traceback (most recent call last):
-TypeError: matrix must be a matrix (list of lists) of integers/floats
->>> matrix = [[None]]
->>> print(matrix_divided(matrix, 2)) #None matrix
-Traceback (most recent call last):
-TypeError: matrix must be a matrix (list of lists) of integers/floats
->>> matrix = [[1, 2, 3], [4, 5, "hi"]]
->>> print(matrix_divided(matrix, 2)) #string in listlist
+
+>>> matrix_divided([], 2)
 Traceback (most recent call last):
 TypeError: matrix must be a matrix (list of lists) of integers/floats

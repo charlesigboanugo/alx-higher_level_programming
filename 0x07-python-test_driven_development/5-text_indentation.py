@@ -6,20 +6,14 @@ def text_indentation(text):
     """Separates sentences in a given piece of text"""
     if type(text) is not str:
         raise TypeError("text must be a string")
-    end = 0
-    textlen = len(text)
-    while end < textlen:
-        start = end
-        while start < textlen and text[start] == ' ':
-            start += 1
-        end = start
-        while (end < textlen and text[end] != '.' and text[end] != ':' and
-               text[end] != '?'):
-            end += 1
-        if end < textlen:
-            end += 1
-        print(text[start:end], end="")
-        end -= 1
-        if text[end] == '.' or text[end] == '?' or text[end] == ':':
-            print("\n")
-        end += 1
+    print_space = False
+    for x in range(len(text)):
+        if text[x] in [".", "?", ":"]:
+            print(text[x], "\n", sep='')
+            print_space = False
+        elif text[x] == ' ':
+            if print_space:
+                print(' ', end='')
+        else:
+            print(text[x], end='')
+            print_space = True

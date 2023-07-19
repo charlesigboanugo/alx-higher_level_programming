@@ -1,5 +1,5 @@
 =============================================
-Test for add_integer function
+Test for 0-add_integer module
 =============================================
 
 
@@ -73,3 +73,10 @@ With (+)(-)inf and NaN
 
 >>> add_integer(float('NaN'), 15)
 104
+
+Missing two Arguments
+=============================================
+
+>>> add_integer()
+Traceback (most recent call last):
+TypeError: add_integer() missing 1 required positional argument: 'a'
