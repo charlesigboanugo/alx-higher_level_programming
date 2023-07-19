@@ -1,10 +1,7 @@
 #!/usr/bin/python3
-"""Defines a function that returns a list of lists containing
-N sized pascal's triangle"""
 
 
-def pascal_triangle(n):
-    """Returns a pascal's triangle of size n as a list of lists"""
+def pas(n):
     arr = []
     for x in range(n):
         sub = [1]
