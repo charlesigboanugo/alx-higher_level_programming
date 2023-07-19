@@ -30,4 +30,4 @@ class Student:
     def reload_from_json(self, json):
         """Loads student attributes from json dict"""
         for ele in json:
-            self.__dict__[ele] = json[ele]
+            self.ele = json[ele]
