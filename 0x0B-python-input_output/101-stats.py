@@ -19,7 +19,6 @@
         if a status code doesn’t appear, it doesn't print anything for that
         status code
 """
-
 import sys
 
 status = {"200": 0, "301": 0, "400": 0, "401": 0,
