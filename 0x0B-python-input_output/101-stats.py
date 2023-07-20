@@ -12,7 +12,7 @@ try:
             if line[-2] in codes:
                 codes[line[-2]] += 1
             elif line[-2] in ["200", "301", "400", "401",
-                          "403", "404", "405", "500"]:
+                              "403", "404", "405", "500"]:
                 codes[line[-2]] = 1
         else:
             continue
