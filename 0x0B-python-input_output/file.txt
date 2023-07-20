@@ -1,4 +1,7 @@
-We offer a truly innovative approach to education:
-focus on building reliable applications and scalable systems, take on real-world challenges, collaborate with your peers. 
-
-A school every software engineer would have dreamt of!
+At Holberton School,
+Python is really important,
+"C is fun!"
+But it can be very hard if:
+- You don't get all Pythonic tricks
+"C is fun!"
+- You don't have strong C knowledge.

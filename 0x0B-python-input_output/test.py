@@ -1,13 +1,12 @@
 #!/usr/bin/python3
 
 
-def pas(n):
-    arr = []
-    for x in range(n):
-        sub = [1]
-        if x != 0:
-            for y in range(len(arr[x - 1]) - 1):
-                sub.append(arr[x - 1][y] + arr[x - 1][y + 1])
-            sub.append(1)
-        arr.append(sub)
-    return arr
+def append_after(filename="", search_string="", new_string=""):
+    lines = ""
+    with open(filename, 'r',  encoding='utf-8') as file:
+        lines = file.readlines()
+    with open(filename, 'w',  encoding='utf-8') as file:
+        for line in lines:
+            file.write(line)
+            if search_string in line:
+                file.write(new_string)
