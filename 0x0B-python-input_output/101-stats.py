@@ -10,8 +10,11 @@ try:
         line = line.split(" ")
         if line[-2] in codes:
             codes[line[-2]] += 1
-        else:
+        elif line[-2] in ["200", "301", "400", "401",
+                          "403", "404", "405", "500"]:
             codes[line[-2]] = 1
+        else:
+            continue
         totalsize += int(line[-1])
         linesread += 1
         if linesread % 10 == 0:
