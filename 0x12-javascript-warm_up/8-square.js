@@ -1,5 +1,5 @@
 #!/usr/bin/node
-let times = parseInt(process.argv[2]);
+const times = parseInt(process.argv[2]);
 let row = 0;
 let column = 0;
 

@@ -1,5 +1,5 @@
 #!/usr/bin/node
-let limit = parseInt(process.argv[2]);
+const limit = parseInt(process.argv[2]);
 let times = 0;
 
 if (limit === undefined || isNaN(limit)) {
