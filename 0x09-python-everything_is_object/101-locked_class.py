@@ -12,4 +12,4 @@ class LockedClass:
             raise AttributeError(f"'{self.__class__.__name__}' \
 object has no attribute '{name}'")
         else:
-            self.__class__.first_name = value        
+            self.__class__.first_name = value
