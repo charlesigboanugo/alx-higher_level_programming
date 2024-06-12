@@ -12,7 +12,7 @@ object has no attribute '{name}'")
         else:
             self.__class__.first_name = value
 
-    def __getattr__(self, name):
+    def __getattribute__(self, name):
         if name == '__dict__':
             raise AttributeError(f"'{self.__class__.__name__}' \
 object has no attribute '{name}'")
