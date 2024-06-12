@@ -3,11 +3,10 @@
 
 
 class LockedClass:
-    """Class with locked down attributes. Can only add first_name"""
+    """Class with locked down attributes. instances Can only add first_name"""
 
     def __setattr__(self, name, value):
-        if name != "first_name":
-            raise AttributeError(f"'LockedClass' object has \
-no attribute '{name}'")
+        if name != "firstname":
+            raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{name}'")
         else:
-            super().__setattr__(name, value)
+            self.__class__.firstname = value        
