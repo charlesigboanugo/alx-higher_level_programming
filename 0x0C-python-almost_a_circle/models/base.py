@@ -105,7 +105,10 @@ class Base:
             raise AttributeError(f'{cls.__name__} has no "update" attribute.'
                                  ' "create" can only be used by a class which'
                                  ' defines the "update" method')
-        new = cls(1, 1)
+        if cls.__name__ == "Rectangle":
+            new = cls(1, 1)
+        if cls.__name__ == "Square":
+            new = cls(1)
         new.update(**dictionary)
         return new
 
