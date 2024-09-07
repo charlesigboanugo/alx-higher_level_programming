@@ -1,102 +1,161 @@
 #!/usr/bin/python3
-"""Square class unittests"""
-import io
-import sys
+""" defines A testcase class for the Base"""
+
 import unittest
-from models.base import Base
-from models.rectangle import Rectangle
-from models.square import Square
+
+from unittest import TestCase, mock
+from io import StringIO
 
 
-class TestSquareClass(unittest.TestCase):
+if __name__ != "__main__":
+    from models.square import Square
+    from models.base import Base
+else:
+    from sys import path as syspath
+    from os import path as ospath
+    from pathlib import Path
 
-    def test_class_membership(self):
-        """Square class unittest"""
-        sq1 = Square(1)
-        self.assertIsInstance(sq1, Base)
-        self.assertIsInstance(sq1, Rectangle)
-        self.assertIsInstance(sq1, Square)
+    new_path = ospath.join(ospath.dirname(__file__), Path("../../"))
+    new_path = ospath.abspath(new_path)
+    syspath.insert(0, new_path)
 
-    def test_attributes_with_correct_initialization(self):
-        """Square attribute unittest"""
-        sq2 = Square(5, x=8, y=5, id=25)
-        self.assertEqual(sq2.id, 25)
-        self.assertEqual(sq2.__str__(), '[Square] (25) 8/5 - 5')
-        self.assertEqual(sq2.area(), 25)
+    from models.square import Square
+    from models.base import Base
 
-    def test_attributes_wrong_data_types(self):
-        """Square wrong data types unittest"""
+
+class TestSquare(TestCase):
+    """Tests for Square class"""
+
+    def setUp(self):
+        """ initializes environment for each unit test"""
+        self.squ = Square(3)
+
+    def tearDown(self):
+        """ sets environment back to default for each unit test"""
+        Base._Base__nb_objects = 0
+
+    def test__init__(self):
+        """ tests for proper initialization"""
+        squ = self.squ
+        self.assertEqual(squ.size, 3)
+        self.assertEqual(squ.width, 3)
+        self.assertEqual(squ.height, 3)
+        self.assertEqual(squ.x, 0)
+        self.assertEqual(squ.y, 0)
+        self.assertEqual(squ.id, 1)
+
+        squ = Square(6, 5)
+        self.assertEqual(squ.size, 6)
+        self.assertEqual(squ.x, 5)
+        self.assertEqual(squ.id, 2)
+
+        squ = Square(40, id=10)
+        self.assertEqual(squ.size, 40)
+        self.assertEqual(squ.id, 10)
+
+        squ = Square(2, x=4)
+        self.assertEqual(squ.size, 2)
+        self.assertEqual(squ.x, 4)
+        self.assertEqual(squ.id, 3)
+
+        squ = Square(2, 4, 3, 50)
+        self.assertEqual(squ.size, 2)
+        self.assertEqual(squ.width, 2)
+        self.assertEqual(squ.height, 2)
+        self.assertEqual(squ.x, 4)
+        self.assertEqual(squ.y, 3)
+        self.assertEqual(squ.id, 50)
+
+    def test__init__exceptions(self):
+        """ tests improper initialization"""
+        self.assertRaises(ValueError, Square, 0)
+        self.assertRaises(ValueError, Square, -1)
+        self.assertRaises(ValueError, Square, 2, -1, 1)
+        self.assertRaises(ValueError, Square, 2, 1, -1)
+        self.assertRaises(TypeError, Square, "2")
+        self.assertRaises(TypeError, Square, None)
+        self.assertRaises(TypeError, Square, {})
+        self.assertRaises(TypeError, Square, 3.9)
+        self.assertRaises(TypeError, Square, 2, "7")
+        self.assertRaises(TypeError, Square, 2, x=None)
+        self.assertRaises(TypeError, Square, 2, x=[])
+        self.assertRaises(TypeError, Square, 2, "3")
+        self.assertRaises(TypeError, Square, 2, Y=None)
+        self.assertRaises(TypeError, Square, 2, y={})
+
+    def test_size_setter(self):
+        """ tests size setter """
+        squ = self.squ
+        squ.size = 50
+
+        self.assertEqual(squ.size, 50)
+
+        with self.assertRaises(ValueError):
+            squ.size = 0
+
+        with self.assertRaises(ValueError):
+            squ.size = -5
+
         with self.assertRaises(TypeError):
-            sq3 = Square('a')
+            squ.size = {}
 
-    def test_attributes_with_wrong_int_range(self):
-        """Square wrong int range unittest"""
-        with self.assertRaises(ValueError):
-            sq4 = Square(0)
-        with self.assertRaises(ValueError):
-            sq5 = Square(-1)
-
-    def test_area_method(self):
-        """Square area method unittest"""
-        sq6 = Square(10)
-        self.assertEqual(sq6.area(), 100)
-
-    def test_display_method(self):
-        """Square display method unittest"""
-        output = io.StringIO()
-        sys.stdout = output
-        sq7 = Square(2)
-        sq7.display()
-        sys.stdout = sys.__stdout__
-        self.assertEqual(output.getvalue(), "##\n##\n")
-
-    def test_str_method(self):
-        """Square __str__ method unittest"""
-        sq8 = Square(2, id=99)
-        str_s = sq8.__str__()
-        self.assertEqual(str_s, '[Square] (99) 0/0 - 2')
-
-    def test_display_method_w_coordinates(self):
-        """Square display method unittest"""
-        output = io.StringIO()
-        sys.stdout = output
-        sq9 = Square(2, x=1, y=1)
-        sq9.display()
-        sys.stdout = sys.__stdout__
-        self.assertEqual(output.getvalue(), "\n ##\n ##\n")
-
-    def test_size_attribute(self):
-        """Square size method unittest"""
-        sq10 = Square(5)
-        self.assertEqual(sq10.size, 5)
-        sq10.size = 9
-        self.assertEqual(sq10.size, 9)
         with self.assertRaises(TypeError):
-            sq10.size = 'a'
-        with self.assertRaises(ValueError):
-            sq10.size = -10
+            squ.size = "2"
 
-    def test_update_method_args_kwargs(self):
-        """Square update method unittest"""
-        sq11 = Square(1)
-        sq11.update(1)
-        self.assertEqual(sq11.__str__(), '[Square] (1) 0/0 - 1')
-        sq11.update(1, 5)
-        self.assertEqual(sq11.__str__(), '[Square] (1) 0/0 - 5')
-        sq11.update(1, 5, 2, 3)
-        self.assertEqual(sq11.__str__(), '[Square] (1) 2/3 - 5')
-        sq11.update(id=99, x=4, y=7, size=8)
-        self.assertEqual(sq11.__str__(), '[Square] (99) 4/7 - 8')
+        with self.assertRaises(TypeError):
+            squ.size = 2.5
 
-    def test_to_dictionary_method(self):
-        """Square to_dictionary method unittest"""
-        sq12 = Square(3)
-        d = sq12.to_dictionary()
-        self.assertIsInstance(d, dict)
-        self.assertEqual(d['id'], 42)
-        self.assertEqual(d['size'], 3)
-        self.assertEqual(d['x'], 0)
-        self.assertEqual(d['y'], 0)
+    def test_update(self):
+        """ tests update method """
+        squ = self.squ
 
-if __name__ == '__main__':
+        squ.update(89)
+        self.assertEqual(squ.__str__(), "[Square] (89) 0/0 - 3")
+
+        squ.update(89, 5)
+        self.assertEqual(squ.__str__(), "[Square] (89) 0/0 - 5")
+
+        squ.update(89, 2, 4, 5)
+        self.assertEqual(squ.__str__(), "[Square] (89) 4/5 - 2")
+
+        squ.update(size=1)
+        self.assertEqual(squ.__str__(), "[Square] (89) 4/5 - 1")
+
+        squ.update(id=16)
+        self.assertEqual(squ.__str__(), "[Square] (16) 4/5 - 1")
+
+        squ.update(size=7)
+        self.assertEqual(squ.__str__(), "[Square] (16) 4/5 - 7")
+
+        squ.update(x=1, size=10, y=20)
+        self.assertEqual(squ.__str__(), "[Square] (16) 1/20 - 10")
+
+    def test__str__(self):
+        """ tests __str__ method """
+        squ = self.squ
+        self.assertEqual(squ.__str__(), "[Square] (1) 0/0 - 3")
+
+        squ = Square(5, 1)
+        self.assertEqual(squ.__str__(), "[Square] (2) 1/0 - 5")
+
+        squ = Square(6, y=5, id=10)
+        self.assertEqual(squ.__str__(), "[Square] (10) 0/5 - 6")
+
+    def test_to_dictionary(self):
+        """ tests to_dictionary method """
+        squ = self.squ
+
+        self.assertEqual(squ.to_dictionary(), {'x': 0, 'y': 0, 'id': 1,
+                                               'size': 3})
+
+        squ = Square(5, 3, 2)
+        self.assertEqual(squ.to_dictionary(), {'x': 3, 'y': 2, 'id': 2,
+                                               'size': 5})
+
+        squ.update(x=1, size=17, y=20)
+        self.assertEqual(squ.to_dictionary(), {'x': 1, 'y': 20, 'id': 2,
+                                               'size': 17})
+
+
+if __name__ == "__main__":
     unittest.main()

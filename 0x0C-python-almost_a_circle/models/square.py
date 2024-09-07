@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-"""Square class"""
-from models.rectangle import Rectangle
+""" Defines a square class """
+from .rectangle import Rectangle
 
 
 class Square(Rectangle):
-    """Square class"""
+    """A square class"""
 
     def __init__(self, size, x=0, y=0, id=None):
         """__init__ method of Square class
@@ -15,11 +15,6 @@ class Square(Rectangle):
             id (int): id of square object
         """
         super().__init__(size, size, x, y, id)
-
-    def __str__(self):
-        """String representation of square object"""
-        return "[{}] ({:d}) {:d}/{:d} - {:d}".format(
-            type(self).__name__, self.id, self.x, self.y, self.width)
 
     @property
     def size(self):
@@ -38,39 +33,33 @@ class Square(Rectangle):
         self.width = size
         self.height = size
 
+    def __str__(self):
+        """String representation of square object"""
+        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.size}"
+
     def update(self, *args, **kwargs):
         """Update attributes
         Args:
             args: arguments
             kwargs: key-word arguments
         """
-        if len(args) > 0:
-            for i, arg in enumerate(args):
-                if i == 0:
-                    self.id = arg
-                if i == 1:
-                    self.size = arg
-                if i == 2:
-                    self.x = arg
-                if i == 3:
-                    self.y = arg
-        elif len(kwargs) > 0:
-            for k, v in kwargs.items():
-                if k == 'id':
-                    self.id = v
-                if k == 'size':
-                    self.size = v
-                if k == 'x':
-                    self.x = v
-                if k == 'y':
-                    self.y = v
+        size = len(args)
+        if size > 0:
+            self.id = args[0]
+            if size > 1:
+                self.size = args[1]
+            if size > 2:
+                self.x = args[2]
+            if size > 3:
+                self.y = args[3]
+        else:
+            for key in kwargs:
+                if key in ["id", "size", "x", "y"]:
+                    self.__setattr__(key, kwargs[key])
 
     def to_dictionary(self):
         """Dictionary representation of object
         Returns:
             dictionary of attributes
         """
-        obj_dict = {}
-        for attr in ['id', 'size', 'x', 'y']:
-            obj_dict[attr] = getattr(self, attr)
-        return obj_dict
+        return {"id": self.id, "size": self.size, "x": self.x, "y": self.y}
