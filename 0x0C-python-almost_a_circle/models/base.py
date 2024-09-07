@@ -123,7 +123,6 @@ class Base:
                 json_str = f.read()
                 list_dict = cls.from_json_string(json_str)
         except FileNotFoundError:
-            print("file not found")
             return list_objs
         for d in list_dict:
             inst = cls.create(**d)
