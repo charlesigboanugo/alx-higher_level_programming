@@ -127,6 +127,11 @@ class TestBase(TestCase):
                   {'id': 19, 'size': 6, 'x': 0, 'y': 0}]
         self.check_save_to_file([squ, squ1, squ2], result, Square)
 
+        self.check_save_to_file([], [], Square)
+        self.check_save_to_file(None, [], Square)
+        self.check_save_to_file([], [], Rectangle)
+        self.check_save_to_file(None, [], Rectangle)
+
     def test_save_to_file_exc(self):
         """ tests save_to_file method exceptions"""
         arg = self.rec
@@ -320,6 +325,11 @@ class TestBase(TestCase):
                   {'id': '10', 'size': '4', 'x': '2', 'y': '2'},
                   {'id': '19', 'size': '6', 'x': '0', 'y': '0'}]
         self.check_save_csv([squ, squ1, squ2], result, Square)
+
+        self.check_save_to_file([], [], Square)
+        self.check_save_to_file(None, [], Square)
+        self.check_save_to_file([], [], Rectangle)
+        self.check_save_to_file(None, [], Rectangle)
 
     def test_save_to_file_csv_exc(self):
         """ tests save_to_file_csv method exceptions"""
